@@ -1,12 +1,12 @@
 {
-  "author": "Paul Irish, Divya Manian",
-  "name": "node-build-script",
+  "author": "Paul Irish, Divya Manian, Morgan Bickle",
+  "name": "h5bp-project-builder",
   "description": "HTML5 Boilerplate node build script - Professional front-end template. So much goodness baked in by default",
   "version": "0.1.0",
   "homepage": "http://h5bp.com",
   "bin": {
     "html5-boilerplate": "./bin/h5bp",
-    "h5bp": "./bin/h5bp"
+    "k5bp": "./bin/h5bp"
   },
   "main": "./h5bp",
   "dependencies": {
