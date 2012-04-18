@@ -20,14 +20,14 @@ better and better, based on [your feedbacks](https://github.com/h5bp/node-build-
 **Fancy one line install:**
 
 ```sh
-# see the gist: https://gist.github.com/2359881
-$ curl https://raw.github.com/gist/2359881/install.sh | sh
+# see the gist: https://gist.github.com/2416597
+$ curl https://raw.github.com/gist/2416597/install.sh | sh
 ```
 
 **Slightly less fancier**
 
 ```sh
-$ npm install https://github.com/h5bp/node-build-script/tarball/master -g
+$ npm install https://github.com/m0rganic/h5bp-project-builder/tarball/master -g
 $ h5bp help
 $ h5bp init
 ```
