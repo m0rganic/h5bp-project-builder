@@ -1,7 +1,7 @@
 
 Usage: k5bp [options] [task [task ...]]
 
-Available tasks the h5bp plugin provides (for a full list, type k5bp --help
+Available tasks the k5bp plugin provides (for a full list, type k5bp --help
 
      clean  Wipe the previous build dirs
       copy  Copies the whole staging(intermediate/) folder to output
