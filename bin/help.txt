@@ -1,7 +1,7 @@
 
-Usage: h5bp [options] [task [task ...]]
+Usage: k5bp [options] [task [task ...]]
 
-Available tasks the h5bp plugin provides (for a full list, type h5bp --help
+Available tasks the h5bp plugin provides (for a full list, type k5bp --help
 
      clean  Wipe the previous build dirs
       copy  Copies the whole staging(intermediate/) folder to output
@@ -16,7 +16,7 @@ Available tasks the h5bp plugin provides (for a full list, type h5bp --help
     server  Start a custom static web server
     usemin  Replaces references to non-minified scripts / stylesheets *
 
-Build targets: h5bp build:<target>
+Build targets: k5bp build:<target>
 
    default  concat css min img rev usemin manifest
       text  concat css min rev usemin manifest
@@ -24,6 +24,6 @@ Build targets: h5bp build:<target>
     basics  concat css min img rev usemin manifest html:basics
     minify  concat css min img rev usemin manifest html:compress
 
-For more information on the h5bp plugin, see https://github.com/h5bp/node-build-script/wiki
+For more information on the k5bp plugin, see https://github.com/h5bp/node-build-script/wiki
 
 For more information on grunt, see https://github.com/cowboy/grunt
