@@ -1,4 +1,3 @@
-
 The h5bp build script now has three versions, the main one being
 the [ant-build-script][]. This
 project is the node version, and it uses [Grunt][grunt] as a build tool.
@@ -12,8 +11,7 @@ environment.
 This node/grunt-based build script tries to be as close as possible to
 the [ant-build-script][], a really great project you should check out.
 
-It is still in early stage of development, but it'll get
-better and better, based on [your feedbacks](https://github.com/h5bp/node-build-script/issues).
+It is still in early stage of development, but will get better, thanks to [your feedback](https://github.com/h5bp/node-build-script/issues).
 
 ## Quick start
 
@@ -32,11 +30,19 @@ $ h5bp help
 $ h5bp init
 ```
 
+**Developing locally**
+
+```sh
+$ git clone git://github.com/h5bp/node-build-script.git
+$ cd node-build-script
+$ npm link
+```
+
 ## Features
 
 * Concats / Compresses JS
 * Concats / Compresses CSS
-* Inline CSS imports via
+* Inline CSS imports via RequireJS
 * Basic to aggressive html minification (via [html-minfier][])
 * Optimizes JPGs and PNGs (with jpegtran & optipng)
 * Renames JS/CSS to prepend a hash of their contents for easier versioning

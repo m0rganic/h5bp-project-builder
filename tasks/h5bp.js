@@ -10,7 +10,21 @@ var fs = require('fs'),
 //
 // not implemented tasks (add noop waithing for their impl): manifest images
 //
-
+//
+//
+// build      (default) no html optimizations
+//
+// text       same as build but without image (png/jpg) optimizing
+//
+// buildkit   minor html optimizations, all html whitespace/comments
+//            maintained
+//
+// basics     same as build minus plugs minor html optimizations
+//            (extra quotes and comments removed)
+//            (todo: inline script/style minified)
+//
+// minify     same as build plus full html minification,
+//
 
 module.exports = function(grunt) {
 
@@ -18,28 +32,13 @@ module.exports = function(grunt) {
   grunt.registerTask('default', 'build:default');
   grunt.registerTask('reload', 'default connect watch:reload');
 
-  // and build targets, these are equivalent to alias except that we
-  // defined a single task and use arguments to trigger the appropriate
-  // target
+  // XXX move targets to the gruntfile? easier for user to tweak build profiles
   var targets = {
-    // build - (default) no html optimizations
-    default: 'concat css min img rev usemin manifest',
-
-    // text - same as build but without image (png/jpg) optimizing
-    text: 'concat css min rev usemin manifest',
-
-    // buildkit - minor html optimizations, all html whitespace/comments
-    // maintained
-    // (todo: inline script/style minified)
+    default:  'concat css min img rev usemin manifest',
+    text:     'concat css min     rev usemin manifest',
     buildkit: 'concat css min img rev usemin manifest html:buildkit',
-
-    // basics - same as build minus plugs minor html optimizations
-    // (extra quotes and comments removed)
-    // (todo: inline script/style minified)
-    basics: 'concat css min img rev usemin manifest html:basics',
-
-    // minify - same as build plus full html minification,
-    minify: 'concat css min img rev usemin manifest html:compress'
+    basics:   'concat css min img rev usemin manifest html:basics',
+    minify:   'concat css min img rev usemin manifest html:compress'
   };
 
   var targetList = grunt.log.wordlist(Object.keys(targets));
@@ -89,16 +88,5 @@ module.exports = function(grunt) {
     grunt.log.writeln('Uncompressed size: ' + String(max.size).green + ' bytes.');
     grunt.log.writeln('Compressed size: ' + String(min.size).green + ' bytes minified.');
   });
-
-  // Output some info on given object, using util.inspect
-  grunt.registerHelper('inspect', function(o) {
-    var lf = grunt.utils.linefeed;
-    var output = (lf + util.inspect(o, false, 4, true) + lf).split(lf).map(function(line) {
-      return line;
-    });
-    output.forEach(grunt.log.ok, grunt.log);
-    return grunt;
-  });
-
 
 };

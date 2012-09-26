@@ -1,5 +1,5 @@
-
 Usage: k5bp [options] [task [task ...]]
+=======
 
 Available tasks the k5bp plugin provides (for a full list, type k5bp --help
 
@@ -19,7 +19,7 @@ Available tasks the k5bp plugin provides (for a full list, type k5bp --help
 Build targets: k5bp build:<target>
 
    default  concat css min img rev usemin manifest
-      text  concat css min rev usemin manifest
+      text  concat css min     rev usemin manifest
   buildkit  concat css min img rev usemin manifest html:buildkit
     basics  concat css min img rev usemin manifest html:basics
     minify  concat css min img rev usemin manifest html:compress
