@@ -1,9 +1,4 @@
-<<<<<<< HEAD
-
 Usage: k5bp [options] [task [task ...]]
-=======
-Usage: h5bp [options] [task [task ...]]
->>>>>>> 7fc8458abbb72b31ee2e320de06adf93cab4d2bf
 
 Available tasks the k5bp plugin provides (for a full list, type k5bp --help
 
