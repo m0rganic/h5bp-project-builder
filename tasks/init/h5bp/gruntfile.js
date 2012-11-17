@@ -7,16 +7,17 @@ module.exports = function(grunt) {
     staging: '{%= staging %}',
     // final build output
     output: '{%= output %}',
-    // filter any files matching one of the below pattern during mkdirs task
-    // the pattern in the .gitignore file should work too.
-    exclude: '.git* build/** node_modules/** grunt.js package.json *.md'.split(' '),
+
+    // Create the build dirs
     mkdirs: {
-      staging: '<config:exclude>'
+      staging: './'
     },
+
     // concat css/**/*.css files, inline @import, output a single minified css
     css: {
-      'css/style.css': ['{%= css_dir %}/**/*.css']
+      'css/main.css': ['{%= css_dir %}/**/*.css']
     },
+
     // Renames JS/CSS to prepend a hash of their contents for easier
     // versioning
     rev: {
@@ -24,21 +25,29 @@ module.exports = function(grunt) {
       css: '{%= css_dir %}/**/*.css',
       img: '{%= img_dir %}/**'
     },
+
     // update references in html to revved files
     usemin: {
-      files: ['**/*.html']
+      html: ['**/*.html'],
+      css: ['**/*.css']
     },
+
     // html minification
-    html: '<config:usemin>',
+    html: {
+      files: '<config:usemin.html>'
+    },
+
     // Optimizes JPGs and PNGs (with jpegtran & optipng)
     img: {
       dist: '<config:rev.img>'
     },
+
     watch: {
       files: '<config:lint.files>',
       tasks: 'lint {%= test_task %}'
     },
-    {% if (min_concat) { if (package_json) { %}
+
+    {% if (min_concat || require_js) { if (package_json) { %}
     pkg: '<json:package.json>',
     meta: {
       banner: '/*! <%= pkg.title || pkg.name %> - v<%= pkg.version %> - ' +
@@ -94,7 +103,34 @@ module.exports = function(grunt) {
         jQuery: true
       {% } %}}
     }{% if (min_concat) { %},
-    uglify: {}{% } %}
+    uglify: {}{% } %}{% if (require_js) { %},
+    rjs: {
+      modules: [{
+        name: 'main',
+      }],
+      dir: 'js/',
+      appDir: 'js',
+      baseUrl: './',
+      pragmas: {
+        doExclude: true
+      },
+      skipModuleInsertion: false,
+      optimizeAllPluginResources: true,
+      findNestedDependencies: true
+    }{% } %}
   });
 
+  {% if (require_js) { %}
+  // in rjs setup, the concat and min task are overriden to use rjs optimizr
+  grunt.renameTask('concat', '_concat').registerTask('concat', 'rjs (noop)', function() {
+    grunt.log.writeln('the concat in rjs setup is a noop, rjs optimizer somewhat replace js concatenation');
+  });
+  grunt.renameTask('min', '_min').registerTask('min', 'rjs');
+  {% } %}
+
+  // uncomment this line if you're using the build script as a grunt plugin
+  // it should be installed locally, even better if put in your package.json's
+  // dependency
+  //
+  // grunt.loadNpmTasks('node-build-script');
 };
